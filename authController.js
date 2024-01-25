@@ -20,10 +20,6 @@ class authController {
 
     async getUsers (req, res) {
         try {
-            const userRole = new Role()
-            const adminRole = new Role({value:"ADMIN"})
-            await userRole.save()
-            await adminRole.save()
             res.json("server work")
         } catch (e) {
 

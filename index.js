@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express')
 const mongoose = require('mongoose')
 const authRouter = require('./authRouter')
@@ -10,7 +12,8 @@ app.use("/auth", authRouter)
 
 const start = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://qwerty:12qwe!Aa@cluster0.4ufdsom.mongodb.net/?retryWrites=true&w=majority`)
+        const mongoURI = process.env.MONGO_URI || 'mongodb+srv://username:password@clustername.mongodb.net/database';
+        await mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
         app.listen(PORT, () => console.log(`server start on port ${PORT}`))
     } catch (e) {
         console.log(e)
